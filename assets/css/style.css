@@ -1,0 +1,14 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+}
+
+#guess {
+    text-align: center;
+    font-family: 'Amaranth', sans-serif;
+}
