@@ -1,13 +1,14 @@
 //da variables
-var gameLetters = ["abcdefghijklmnopqrstuvwxyz".split("")];
+var gameLetters = ["a", "e", "i", "o", "u", "y"];
 var wins = 0;
 var losses = 0;
 var remainingGuesses = 9;
 var computerGuess = gameLetters[Math.floor(Math.random() * gameLetters.length)];
 var userGuess = [];
+var displayRemainingGuesses = document.getElementById("guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
 
 
-//Add new functions
+//Decrement guesses
 
 function decrementGuess() {
     if(remainingGuesses > 0) {
@@ -16,30 +17,47 @@ function decrementGuess() {
     document.getElementById("guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
 }
 
-function resetGame() {
-    if(remainingGuesses = 0) {
-        
+//Reset the game
+function resetGuess() {
+    if (remainingGuesses === 0) {
+        remainingGuesses = 9;
     }
-    document.getElementById("guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
+}
+
+//Reset if won
+function resetGame() {
+    if (wins > ) {
+        remainingGuesses = 9;
+    }
+}
+
+//Display remainingGuesses
+function updateDisplay() {
+     displayRemainingGuesses.textContent = remainingGuesses;
 }
 
 //Typing does things
 document.onkeyup = function(event) {
-    var guesses = event.key;
-    document.getElementById("yourGuess").innerHTML = "Your Guess: " + guesses;
+    var guess = event.key;
+    userGuess.push(guess);
+    document.getElementById("yourGuess").innerHTML = "Your Guess: " + guess;
 
     //User guesses are same as the computer's guess, increase wins by 1
-            if (userGuess === computerGuess) {
+            if (guess === computerGuess) {
             wins++;
+            resetGame();
+            userGuess = [];
+            computerGuess = gameLetters[Math.floor(Math.random() * gameLetters.length)];
             document.getElementById("win").innerHTML = "Wins: " + wins;
     //If it's not the same, increase losses, decrease guesses
             } else {
-                losses++;
-                document.getElementById("lose").innerHTML = "Losses: " + losses;
                 decrementGuess();
-            }
-        
- 
+                if (remainingGuesses === 0) {
+                    losses++;
+                    document.getElementById("lose").innerHTML = "Losses: " + losses;
+                    resetGuess();
+            } 
+        }
 }
 
-
+updateDisplay();
