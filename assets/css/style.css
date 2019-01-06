@@ -12,3 +12,15 @@ h1 {
     text-align: center;
     font-family: 'Amaranth', sans-serif;
 }
+
+img {
+    display: block;
+    margin-left: 43%;
+    margin-right: 57%;
+    height: 200px;
+    width: 200px;
+}
+
+.style {
+    margin-left: 42%;
+}

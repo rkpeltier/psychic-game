@@ -1,22 +1,11 @@
 //da variables
-var gameLetters = ["a", "e", "i", "o", "u", "y"]
+var gameLetters = ["a", "e", "i", "o", "u", "y"];
 var wins = 0;
 var losses = 0;
 var remainingGuesses = 9;
+//var computerGuess = gameLetters[Math.floor(Math.random() * gameLetters.length)];
+var userGuess = [];
 
-//Need to print text names to HTML always instead of just when user does something
-
-//Counting the wins
-function countWins() {
-    wins++;
-    document.querySelector("#win").innerHTML = "Wins: " + wins;
-}
-
-//Counting losses
-function countLosses() {
-    losses++;
-    document.querySelector("#lose").innerHTML = "Losses: " + losses;
-}
 
 //Guesses per game
 function decrementGuess() {
@@ -24,13 +13,25 @@ function decrementGuess() {
     document.querySelector("#guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
 }
 
+function resetGame() {
+    remainingGuesses = 0;
+
+}
+
 //Typing does things
 document.onkeyup = function(event) {
-    //Need a way to express if user types correct letters that it only then counts it as wins
-    if (gameLetters === gameLetters) {
-        countWins();
-        //while letting 
-    } else countLosses();
+    var guesses = event.key;
+    document.querySelector("#yourGuess").innerHTML = "Your Guess: " + guesses;
+
+            if (guesses === gameLetters) {
+            wins++;
+            document.getElementById("#win").innerHTML = "Wins: " + wins;
+            } else {
+                losses++;
+                document.getElementById("#lose").innerHTML = "Losses: " + losses;
+            }
+        
+    
 }
 
 
