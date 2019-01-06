@@ -1,37 +1,45 @@
 //da variables
-var gameLetters = ["a", "e", "i", "o", "u", "y"];
+var gameLetters = ["abcdefghijklmnopqrstuvwxyz".split("")];
 var wins = 0;
 var losses = 0;
 var remainingGuesses = 9;
-//var computerGuess = gameLetters[Math.floor(Math.random() * gameLetters.length)];
+var computerGuess = gameLetters[Math.floor(Math.random() * gameLetters.length)];
 var userGuess = [];
 
 
-//Guesses per game
+//Add new functions
+
 function decrementGuess() {
-    remainingGuesses --;
-    document.querySelector("#guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
+    if(remainingGuesses > 0) {
+        remainingGuesses--;
+    }
+    document.getElementById("guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
 }
 
 function resetGame() {
-    remainingGuesses = 0;
-
+    if(remainingGuesses = 0) {
+        
+    }
+    document.getElementById("guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
 }
 
 //Typing does things
 document.onkeyup = function(event) {
     var guesses = event.key;
-    document.querySelector("#yourGuess").innerHTML = "Your Guess: " + guesses;
+    document.getElementById("yourGuess").innerHTML = "Your Guess: " + guesses;
 
-            if (guesses === gameLetters) {
+    //User guesses are same as the computer's guess, increase wins by 1
+            if (userGuess === computerGuess) {
             wins++;
-            document.getElementById("#win").innerHTML = "Wins: " + wins;
+            document.getElementById("win").innerHTML = "Wins: " + wins;
+    //If it's not the same, increase losses, decrease guesses
             } else {
                 losses++;
-                document.getElementById("#lose").innerHTML = "Losses: " + losses;
+                document.getElementById("lose").innerHTML = "Losses: " + losses;
+                decrementGuess();
             }
         
-    
+ 
 }
 
 
