@@ -17,16 +17,9 @@ function decrementGuess() {
     document.getElementById("guessRemain").innerHTML = "Remaining Guesses: " + remainingGuesses;
 }
 
-//Reset the game
+//Reset the game when guesses are at 0
 function resetGuess() {
     if (remainingGuesses === 0) {
-        remainingGuesses = 9;
-    }
-}
-
-//Reset if won
-function resetGame() {
-    if (wins > ) {
         remainingGuesses = 9;
     }
 }
@@ -36,11 +29,18 @@ function updateDisplay() {
      displayRemainingGuesses.textContent = remainingGuesses;
 }
 
+
 //Typing does things
 document.onkeyup = function(event) {
     var guess = event.key;
     userGuess.push(guess);
     document.getElementById("yourGuess").innerHTML = "Your Guess: " + guess;
+    //Reset the game if won
+        function resetGame() {
+            if (guess === computerGuess) {
+            remainingGuesses = 9;
+    }
+}
 
     //User guesses are same as the computer's guess, increase wins by 1
             if (guess === computerGuess) {
